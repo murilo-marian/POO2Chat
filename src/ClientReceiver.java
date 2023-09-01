@@ -4,9 +4,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class ClientReceiver implements Runnable{
+public class ClientReceiver implements Runnable {
     private static ClientReceiver clientReceiver;
     private Socket clientSocket;
+
     @Override
     public void run() {
         while (true) {

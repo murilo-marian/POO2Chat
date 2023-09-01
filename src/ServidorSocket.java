@@ -26,7 +26,7 @@ public class ServidorSocket {
             servidor = new ServerSocket(7000);
             List<ConnectionHandler> clientes = new ArrayList<>();
 
-            while (true){
+            while (true) {
                 conexao = servidor.accept();
                 ConnectionHandler connectionHandler = new ConnectionHandler(conexao);
                 Object lock = new Object();

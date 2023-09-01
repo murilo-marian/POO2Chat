@@ -44,7 +44,7 @@ public class ConnectionHandler implements Runnable {
         }
     } //... close socket, etc.
 
-    public void distributeMessage(String message,long id) throws IOException {
+    public void distributeMessage(String message, long id) throws IOException {
         Object lock = new Object();
         List<ConnectionHandler> clientsCopy;
         synchronized (lock) {
