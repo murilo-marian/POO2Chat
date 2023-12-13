@@ -1,7 +1,7 @@
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class ClienteSocket {
@@ -10,11 +10,11 @@ public class ClienteSocket {
         Scanner entrada = new Scanner(System.in);
 
         //variaável para armazenar o tezxto que será digitado
-        String texto = "";
+        String texto;
 
-        Socket cliente = null;
+        Socket cliente;
 
-        PrintStream saida = null;
+        PrintStream saida;
 
         try {
             //cria o socket com os parametros
@@ -30,8 +30,6 @@ public class ClienteSocket {
                 texto = entrada.nextLine();
                 saida.println(texto);
             } while (!"sair".equals(texto));
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

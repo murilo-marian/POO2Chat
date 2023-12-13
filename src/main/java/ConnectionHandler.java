@@ -1,16 +1,25 @@
+
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ConnectionHandler implements Runnable {
     private long id;
     private Socket clientSocket;
     private List<ConnectionHandler> clientes;
+    Filtro filtro;
+
+    {
+        try {
+            filtro = Filtro.getInstance("files/blacklist.txt", TipoDeFiltro.Asteriscos, true).hasCaminhoLog("files/log.json");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void run() {
-        BufferedReader in = null;
+        BufferedReader in;
         id = Thread.currentThread().getId();
         try {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -29,6 +38,8 @@ public class ConnectionHandler implements Runnable {
                 if (texto == null) {
                     break;
                 }
+
+                texto = filtro.filtrar(texto);
                 distributeMessage(texto, id);
                 System.out.println(texto);
                 /*printStream.println(texto);*/

@@ -11,8 +11,7 @@ public class ClientReceiver implements Runnable {
     @Override
     public void run() {
         while (true) {
-
-            InputStream input = null;
+            InputStream input;
             try {
                 input = clientSocket.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(input));
